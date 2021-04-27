@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+
+    <class name="model.Apartment" table="Apartment">
+        <id name="id" column="id" />
+        <property name="squareMeters" column="squareMeters" />
+        <property name="noRooms" column="noRooms" />
+        <property name="floor" column="floor" />
+        <property name="street" column="street" />
+        <property name="number" column="number" />
+        <property name="city" column="city" />
+        <property name="price" column="price" />
+        <property name="estimatedPrice" column="estimatedPrice" />
+        <property name="ownerUsername" column="ownerUsername" />
+        <property name="title" column="title" />
+        <property name="neighbourhood" column="neighbourhood" />
+        <property name="createdAt" column="createdAt" />
+        <property name="description" column="description" />
+    </class>
+
+</hibernate-mapping>

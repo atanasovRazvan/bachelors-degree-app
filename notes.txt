@@ -1,0 +1,17 @@
+// TODOS
+	// MyListings
+
+	-	create, update, delete apartment (CONNECT TO API)
+
+// FIXES
+
+-	make context work without remember me
+-	add a button that goes to '/' on login and register
+-	add a ? widget (estimatedPrice == -1)
+-	add some responses like error (impove fetches)
+-	token
+
+// ENHANCEMENTS
+
+-	search, filter, pagination
+-	make apartment description to work with rich text
