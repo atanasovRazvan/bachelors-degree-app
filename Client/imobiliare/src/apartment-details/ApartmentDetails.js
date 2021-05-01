@@ -86,86 +86,90 @@ const ApartmentDetails = () => {
     setExpanded(!expanded);
   };
   return (
-    <>
-      <UserInfoModal
-        open={displayUserInfo}
-        onCloseModal={() => setDisplayUserInfo(false)}
-        apartment={apartmentInfo}
-      />
-      <CssBaseline />
-      <Container className={classes.heroContent} maxWidth="sm">
-        <Card className={classes.root}>
-          <CardHeader
-            avatar={(
-              <Avatar
-                aria-label="recipe"
-                className={classes.avatar}
-                src={userAvatarSrc}
-                onError={() => setUserAvatarSrc(defaultProfilePicture)}
-              />
-                    )}
-            action={(
-              <img
-                src={meterSource(apartmentInfo?.price, apartmentInfo?.estimatedPrice)}
-                alt="Price Estimation"
-              />
-                    )}
-            title={`${apartmentInfo?.firstName} ${apartmentInfo?.lastName}`}
-            subheader={formatDate(apartmentInfo?.createdAt)}
+    apartmentInfo
+      ? (
+        <>
+          <UserInfoModal
+            open={displayUserInfo}
+            onCloseModal={() => setDisplayUserInfo(false)}
+            apartment={apartmentInfo}
           />
-          <CardContent>
-            <hr />
-            <Typography variant="h5" className={classes.centered}>
-              {apartmentInfo?.title}
-            </Typography>
-            <hr />
-            <PhotoSlider images={apartmentInfo.imageSources} />
-            <hr />
-            <Grid container spacing={2} justify="space-evenly" className={classes.gridContainer}>
-              {listFields.map((field, index) => {
-                if (apartmentInfo && apartmentInfo[field].length > 0) {
-                  return (
-                    <Grid key={labels[index]} item xs={12} sm={6}>
-                      <Typography component="li" variant="body2">
-                        {`${labels[index]}: ${apartmentInfo[field]}`}
-                      </Typography>
-                    </Grid>
-                  );
-                }
-                return null;
-              })}
-            </Grid>
-          </CardContent>
-          <CardActions disableSpacing>
-            <Button
-              variant="contained"
-              color="secondary"
-              size="small"
-              onClick={() => setDisplayUserInfo(true)}
-            >
-              Contacteaza proprietarul
-            </Button>
-            <IconButton
-              className={clsx(classes.expand, {
-                [classes.expandOpen]: expanded,
-              })}
-              onClick={handleExpandClick}
-              aria-expanded={expanded}
-              aria-label="show more"
-            >
-              <ExpandMore />
-            </IconButton>
-          </CardActions>
-          <Collapse in={expanded} timeout="auto" unmountOnExit>
-            <CardContent>
-              <Typography variant="body2" className={classes.description}>
-                {apartmentInfo?.description}
-              </Typography>
-            </CardContent>
-          </Collapse>
-        </Card>
-      </Container>
-    </>
+          <CssBaseline />
+          <Container className={classes.heroContent} maxWidth="sm">
+            <Card className={classes.root}>
+              <CardHeader
+                avatar={(
+                  <Avatar
+                    aria-label="recipe"
+                    className={classes.avatar}
+                    src={userAvatarSrc}
+                    onError={() => setUserAvatarSrc(defaultProfilePicture)}
+                  />
+                      )}
+                action={(
+                  <img
+                    src={meterSource(apartmentInfo?.price, apartmentInfo?.estimatedPrice)}
+                    alt="Price Estimation"
+                  />
+                      )}
+                title={`${apartmentInfo?.firstName} ${apartmentInfo?.lastName}`}
+                subheader={formatDate(apartmentInfo?.createdAt)}
+              />
+              <CardContent>
+                <hr />
+                <Typography variant="h5" className={classes.centered}>
+                  {apartmentInfo?.title}
+                </Typography>
+                <hr />
+                <PhotoSlider images={apartmentInfo?.imageSources} />
+                <hr />
+                <Grid container spacing={2} justify="space-evenly" className={classes.gridContainer}>
+                  {listFields.map((field, index) => {
+                    if (apartmentInfo && apartmentInfo[field].length > 0) {
+                      return (
+                        <Grid key={labels[index]} item xs={12} sm={6}>
+                          <Typography component="li" variant="body2">
+                            {`${labels[index]}: ${apartmentInfo[field]}`}
+                          </Typography>
+                        </Grid>
+                      );
+                    }
+                    return null;
+                  })}
+                </Grid>
+              </CardContent>
+              <CardActions disableSpacing>
+                <Button
+                  variant="contained"
+                  color="secondary"
+                  size="small"
+                  onClick={() => setDisplayUserInfo(true)}
+                >
+                  Contacteaza proprietarul
+                </Button>
+                <IconButton
+                  className={clsx(classes.expand, {
+                    [classes.expandOpen]: expanded,
+                  })}
+                  onClick={handleExpandClick}
+                  aria-expanded={expanded}
+                  aria-label="show more"
+                >
+                  <ExpandMore />
+                </IconButton>
+              </CardActions>
+              <Collapse in={expanded} timeout="auto" unmountOnExit>
+                <CardContent>
+                  <Typography variant="body2" className={classes.description}>
+                    {apartmentInfo?.description}
+                  </Typography>
+                </CardContent>
+              </Collapse>
+            </Card>
+          </Container>
+        </>
+      )
+      : null
   );
 };
 

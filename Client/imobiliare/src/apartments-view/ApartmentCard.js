@@ -48,7 +48,7 @@ const ApartmentCard = ({ apartment }) => {
         />
         <CardContent className={classes.cardContent}>
           <Typography gutterBottom variant="h6" component="h2">
-            {apartment.shortDescription}
+            {apartment.title}
           </Typography>
           <hr />
           <ListItem ContainerComponent="div">

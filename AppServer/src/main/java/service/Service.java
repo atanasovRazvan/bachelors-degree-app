@@ -85,6 +85,7 @@ public class Service {
     public ResponseEntity<UserPublicInfo> updateUser(@RequestBody User user){
         User updatedUser = (User) this.userRepository.update(user);
         UserPublicInfo userPublicInfo = new UserPublicInfo(
+                updatedUser.getUsername(),
                 updatedUser.getFirstName(),
                 updatedUser.getLastName(),
                 updatedUser.getEmail(),
