@@ -9,9 +9,12 @@ import TextField from '@material-ui/core/TextField';
 import CardActions from '@material-ui/core/CardActions';
 import Button from '@material-ui/core/Button';
 import { generateUniqueID } from 'web-vitals/dist/modules/lib/generateUniqueID';
+import axios from 'axios';
 import formatDate from '../utils/DateFormatting';
 import 'draft-js/dist/Draft.css';
 import ApartmentImages from './ApartmentImages';
+import serverUrl from '../utils/constants';
+import config from '../utils/config';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -96,12 +99,22 @@ const CRUDApartmentCard = ({ apartment }) => {
   };
 
   const deleteApartment = (id) => {
-    console.log(id);
-    setIsDeleted(true);
+    axios.delete(`${serverUrl}/apartment/${id}`, config)
+      .then(() => {
+        console.log('Deleted successfully');
+        setIsDeleted(true);
+      })
+      .catch(() => console.log('Error deleting'));
   };
 
   const updateApartment = () => {
-    console.log(apartmentInfo.id);
+    axios.post(`${serverUrl}/apartment`, apartmentInfo, config)
+      .then(() => {
+        console.log('Updated successfully');
+      })
+      .catch(() => {
+        console.log('Error saving');
+      });
   };
 
   return (

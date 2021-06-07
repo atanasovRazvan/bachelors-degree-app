@@ -11,8 +11,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 import javax.xml.soap.Detail;
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.Collectors;
 
@@ -21,19 +24,15 @@ import java.util.stream.Collectors;
 @RequestMapping("/api")
 public class Service {
 
-    private RepositoryInterface userRepository = new UserRepository();
-    private RepositoryInterface apartmentRepository = new ApartmentRepository();
-    private RepositoryInterface imageRepository = new ImageRepository();
+    private final RepositoryInterface<User> userRepository = new UserRepository();
+    private final RepositoryInterface<Apartment> apartmentRepository = new ApartmentRepository();
+    private final RepositoryInterface<Image> imageRepository = new ImageRepository();
 
-    // User manipulation
+    public UserPublicInfo getUserPublicInfo(String username, String password){
+        User user = userRepository.findOne(username);
 
-    @PostMapping("/login")
-    public ResponseEntity<UserPublicInfo> loginRequest(@RequestBody UserCredentials credentials){
-
-        User user = (User) userRepository.findOne(credentials.getUsername());
-
-        if(user != null && user.getPassword().equals(credentials.getPassword())){
-            UserPublicInfo userPublicInfo = new UserPublicInfo(
+        if(user != null && user.getPassword().equals(password)){
+            return new UserPublicInfo(
                     user.getUsername(),
                     user.getFirstName(),
                     user.getLastName(),
@@ -42,49 +41,46 @@ public class Service {
                     user.getAvatarSrc(),
                     user.getCreatedAt()
             );
-            return new ResponseEntity<>(userPublicInfo, HttpStatus.OK);
         }
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        return null;
     }
 
-    @GetMapping("/user/{username}")
-    public ResponseEntity<User> readUser(@PathVariable("username") String username){
-        return new ResponseEntity<>((User) this.userRepository.findOne(username), HttpStatus.OK);
+    public User getUser(String username){
+        return this.userRepository.findOne(username);
     }
 
-    @PutMapping("/user")
-    public ResponseEntity<User> createUser(@RequestBody User user){
+    public User createUser(User user){
         try{
-            return new ResponseEntity<>((User) this.userRepository.add(user), HttpStatus.OK);
+            long unixTime = System.currentTimeMillis() / 1000L;
+            user.setCreatedAt(String.valueOf(unixTime));
+            return this.userRepository.add(user);
         }
         catch(Exception ex){
             ex.printStackTrace();
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            return null;
         }
     }
 
-    @PostMapping("/user/setavatar/{username}")
-    public ResponseEntity<Boolean> setAvatar(@PathVariable("username") String username, @RequestBody String avatar){
+    public Boolean changeUserAvatar(String username, String avatarSource){
         try{
-            User user = (User) this.userRepository.findOne(username);
-            user.setAvatarSrc(avatar);
-            User updatedUser = (User) this.userRepository.update(user);
+            User user = this.userRepository.findOne(username);
+            user.setAvatarSrc(avatarSource);
+            User updatedUser = this.userRepository.update(user);
             if(updatedUser != null){
-                return new ResponseEntity<>(Boolean.TRUE, HttpStatus.OK);
+                return Boolean.TRUE;
             }
             else{
-                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+                return Boolean.FALSE;
             }
         }
         catch (Exception ex){
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            return null;
         }
     }
 
-    @PostMapping("/user")
-    public ResponseEntity<UserPublicInfo> updateUser(@RequestBody User user){
-        User updatedUser = (User) this.userRepository.update(user);
-        UserPublicInfo userPublicInfo = new UserPublicInfo(
+    public UserPublicInfo updateUser(User user){
+        User updatedUser = this.userRepository.update(user);
+        return new UserPublicInfo(
                 updatedUser.getUsername(),
                 updatedUser.getFirstName(),
                 updatedUser.getLastName(),
@@ -93,32 +89,26 @@ public class Service {
                 updatedUser.getAvatarSrc(),
                 updatedUser.getCreatedAt()
         );
-        return new ResponseEntity<>(userPublicInfo, HttpStatus.OK);
     }
 
-    @PostMapping("/user/updatePassword/{username}")
-    public ResponseEntity<Boolean> updateUserPassword(@PathVariable("username") String username, @RequestBody Passwords passwords){
-        User user = (User) this.userRepository.findOne(username);
-        if(user.getPassword().equals(passwords.getOldPassword())){
-            user.setPassword(passwords.getNewPassword());
+    public Boolean updateUserPassowrd(String username, String newPassword, String oldPassword){
+        User user = this.userRepository.findOne(username);
+        if(user.getPassword().equals(oldPassword)){
+            user.setPassword(newPassword);
             this.userRepository.update(user);
-            return new ResponseEntity<>(HttpStatus.OK);
+            return Boolean.TRUE;
         }
 
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        return Boolean.FALSE;
     }
 
-    // Apartment manipulation
-
-    @GetMapping("/apartment/{id}")
-    public ResponseEntity<DetailedApartment> apartment(@PathVariable("id") String id){
+    public DetailedApartment getDetailedApartment(String apartmentId){
         try{
-            Apartment foundApartment = (Apartment) this.apartmentRepository.findOne(id);
-            User owner = (User) this.userRepository.findOne(foundApartment.getOwnerUsername());
+            Apartment foundApartment = this.apartmentRepository.findOne(apartmentId);
+            User owner = this.userRepository.findOne(foundApartment.getOwnerUsername());
             List<Image> images = new ArrayList<>();
-            this.imageRepository.getAll().forEach((object) -> {
-                Image image = (Image) object;
-                if(image.getApartmentId().equals(id)){
+            this.imageRepository.getAll().forEach(image -> {
+                if(image.getApartmentId().equals(apartmentId)){
                     images.add(image);
                 }
             });
@@ -130,23 +120,20 @@ public class Service {
             );
 
             if(foundApartment != null && owner != null)
-                return new ResponseEntity<>(detailedApartment, HttpStatus.OK);
+                return detailedApartment;
             else
-                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+                return null;
         }
         catch(Exception e){
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            return null;
         }
     }
 
-    @GetMapping("/apartments")
-    public ResponseEntity<List<Apartment>> apartments(){
+    public List<Apartment> getAllApartments(){
         List<Apartment> list = new ArrayList<>();
-        this.apartmentRepository.getAll().forEach((object) -> {
-            Apartment apartment = (Apartment) object;
+        this.apartmentRepository.getAll().forEach(apartment -> {
             AtomicReference<String> displayImage = new AtomicReference<>("");
-            this.imageRepository.getAll().forEach((object1) -> {
-                Image image = (Image) object1;
+            this.imageRepository.getAll().forEach(image -> {
                 if(image.getApartmentId().equals(apartment.getId()) && image.getIsDisplay() == Boolean.TRUE){
                     displayImage.set(image.getSource());
                 }
@@ -154,45 +141,44 @@ public class Service {
             apartment.setDisplayImage(displayImage.get());
             list.add(apartment);
         });
-        return new ResponseEntity<>(list, HttpStatus.OK);
+        return list;
     }
 
-    @GetMapping("/apartments/{username}")
-    public ResponseEntity<List<DetailedApartment>> userApartments(@PathVariable("username") String username){
-        List<Apartment> apartments = (List<Apartment>) this.apartmentRepository.getAll();
+    public List<DetailedApartment> getUsersApartments(String username){
         List<DetailedApartment> detailedApartments = new ArrayList<>();
-        apartments.forEach((apartment) -> {
+        this.apartmentRepository.getAll().forEach(apartment -> {
             if(apartment.getOwnerUsername().equals(username)){
                 List<Image> images = new ArrayList<>();
-                imageRepository.getAll().forEach((object) -> {
-                    Image image = (Image) object;
+                imageRepository.getAll().forEach(image -> {
                     if(image.getApartmentId().equals(apartment.getId())){
                         images.add(image);
                     }
                 });
                 detailedApartments.add(new DetailedApartment(
                         apartment,
-                        (User) this.userRepository.findOne(username),
+                        this.userRepository.findOne(username),
                         images
                 ));
             }
         });
-        return new ResponseEntity<>(detailedApartments, HttpStatus.OK);
+        return detailedApartments;
     }
 
-    @PutMapping("/apartment")
-    public ResponseEntity<Apartment> createApartment(@RequestBody Apartment apartment){
-        return new ResponseEntity<>((Apartment) this.apartmentRepository.add(apartment), HttpStatus.OK);
+    public Boolean deleteApartment(String apartmentId){
+        return this.apartmentRepository.delete(this.apartmentRepository.findOne(apartmentId));
     }
 
-    @PostMapping("/apartment")
-    public ResponseEntity<Apartment> updateApartment(@RequestBody Apartment apartment){
-        return new ResponseEntity<>((Apartment) this.apartmentRepository.update(apartment), HttpStatus.OK);
+    public Boolean apartmentExists(String apartmentId){
+        return this.apartmentRepository.findOne(apartmentId) != null;
     }
 
-    @DeleteMapping("/apartment/{id}")
-    public ResponseEntity<Boolean> deleteApartment(@PathVariable("id") String id){
-        return new ResponseEntity<>(this.apartmentRepository.delete(id), HttpStatus.OK);
+    public Apartment createApartment(Apartment apartment){
+        apartment.setId(UUID.randomUUID().toString());
+        return this.apartmentRepository.add(apartment);
+    }
+
+    public Apartment updateApartment(Apartment apartment){
+        return this.apartmentRepository.update(apartment);
     }
 
 }

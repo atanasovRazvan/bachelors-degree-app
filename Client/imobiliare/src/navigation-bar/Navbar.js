@@ -39,7 +39,7 @@ const Navbar = () => {
         { token ? (
           <div className={classes.right}>
             <Avatar
-              src={userInfo.avatarSrc}
+              src={userInfo?.avatarSrc}
               onClick={(event) => setAnchorEl(event.currentTarget)}
             />
           </div>
