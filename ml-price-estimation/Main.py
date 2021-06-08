@@ -13,11 +13,12 @@ for el in input:
     inputs.append(oneInput)
 
 split = int(len(inputs) / 10)
-trainData, testData = normalisation(inputs[split:], inputs[:split])
 
+mean, stdDev = normalisation(inputs[split:])
+trainData, testData = dataNormalisation(inputs[split:], inputs[:split], mean, stdDev)
 
 network = netInitialisation(3, 1, 3)
 trainingMLP(network, trainData, 0.001, 1000)
 output = evaluatingMLP(network, testData)
-print(output)
-print([x[-1] for x in testData])
+print(denormalisation(output, mean, stdDev))
+print([x[-1] for x in inputs[:split]])

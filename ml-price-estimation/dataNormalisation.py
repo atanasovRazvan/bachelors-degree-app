@@ -3,7 +3,7 @@ def detMeanStd(feature):
     stdDevValue = (1 / len(feature) * sum([ (feat - meanValue) ** 2 for feat in feature])) ** 0.5
     return meanValue, stdDevValue
 
-def normalisation(trainInputs, testInputs):
+def normalisation(trainInputs):
 
     noFeatures = len(trainInputs[0])
     mean = []
@@ -14,6 +14,11 @@ def normalisation(trainInputs, testInputs):
        mean.append(m)
        stdDev.append(s)
 
+    return mean, stdDev
+
+def dataNormalisation(trainInputs, testInputs, mean, stdDev):
+
+    noFeatures = len(trainInputs[0])
     normalisedTrainInputs = []
     for i in range(len(trainInputs)):
         normalisedTrainInputs.append([(trainInputs[i][j] - mean[j]) / stdDev[j] for j in range(noFeatures)])
@@ -23,3 +28,8 @@ def normalisation(trainInputs, testInputs):
         normalisedTestInputs.append([(testInputs[i][j] - mean[j]) / stdDev[j] for j in range(noFeatures)])
 
     return normalisedTrainInputs, normalisedTestInputs
+
+def denormalisation(data, mean, stdDev):
+    m = mean[-1]
+    sd = stdDev[-1]
+    return [x*sd+m for x in data]
