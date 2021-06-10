@@ -35,8 +35,6 @@ for layer in network:
         networkFile.write(str(neuron))
         networkFile.write("\n")
 networkFile.close()
-print(network)
 
 output = evaluatingMLP(network, testData)
-print(denormalisation(output, mean, stdDev))
-print([x[-1] for x in inputs[:split]])
+print("Training DONE!")
