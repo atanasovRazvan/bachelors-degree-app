@@ -1,3 +1,10 @@
+import sys
+import os
+import importlib
+
+os.chdir("C:/Users/Razvan/Desktop/LICENTA/Lucrarea de Licenta/ml-price-estimation")
+importlib.reload(sys)
+
 from Neuron import *
 from dataNormalisation import *
 from reader import readData, readNeighbourhoods
@@ -17,7 +24,7 @@ split = int(len(inputs) / 10)
 mean, stdDev = normalisation(inputs[split:])
 trainData, testData = dataNormalisation(inputs[split:], inputs[:split], mean, stdDev)
 
-network = netInitialisation(3, 1, 3)
+network = netInitialisation(3, 1, 10)
 overflow = True
 
 while overflow:
@@ -25,7 +32,7 @@ while overflow:
         trainingMLP(network, trainData, 0.001, 1000)
         overflow = False
     except:
-        pass
+        network = netInitialisation(3, 1, 3)
 
 networkFile = open('network.txt', 'w')
 networkFile.write(str(mean)+"\n")

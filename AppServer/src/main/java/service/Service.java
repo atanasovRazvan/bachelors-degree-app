@@ -1,32 +1,41 @@
 package service;
 
 import model.*;
-import org.springframework.web.bind.annotation.*;
 import repository.ApartmentRepository;
 import repository.ImageRepository;
 import repository.RepositoryInterface;
 import repository.UserRepository;
 
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-
-import javax.xml.soap.Detail;
-import java.sql.Timestamp;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.UUID;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.*;
 import java.util.concurrent.atomic.AtomicReference;
-import java.util.stream.Collectors;
 
-@CrossOrigin
-@RestController
-@RequestMapping("/api")
 public class Service {
 
     private final RepositoryInterface<User> userRepository = new UserRepository();
     private final RepositoryInterface<Apartment> apartmentRepository = new ApartmentRepository();
     private final RepositoryInterface<Image> imageRepository = new ImageRepository();
+
+    class TrainML extends TimerTask {
+        public void run() {
+            String pathToTrain = "C:\\Users\\Razvan\\Desktop\\LICENTA\\Lucrarea de Licenta\\ml-price-estimation\\dist\\TrainML.exe";
+            try {
+                Process process = Runtime.getRuntime().exec(pathToTrain);
+                process.waitFor();
+                BufferedReader output = new BufferedReader(new InputStreamReader(process.getInputStream()));
+                System.out.println(output.readLine());
+            } catch (IOException | InterruptedException exception) {
+                exception.printStackTrace();
+            }
+        }
+    }
+
+    public Service(){
+        Timer timer = new Timer();
+        timer.schedule(new TrainML(), 0, 60L * 1000); // 24L * 60 * 60 * 1000 = 1 day
+    }
 
     public UserPublicInfo getUserPublicInfo(String username, String password){
         User user = userRepository.findOne(username);
@@ -43,6 +52,21 @@ public class Service {
             );
         }
         return null;
+    }
+
+    public String evaluateApartment(String neighbourhood, String squareMeters, String noRooms, String price) throws InterruptedException, IOException {
+        String pathToEvaluation = "C:\\Users\\Razvan\\Desktop\\LICENTA\\Lucrarea de Licenta\\ml-price-estimation\\dist\\Estimate.exe";
+        Process process = Runtime.getRuntime().exec(
+                pathToEvaluation + " " +
+                        neighbourhood + " " +
+                        squareMeters + " " +
+                        noRooms + " " +
+                        price
+        );
+        process.waitFor();
+        BufferedReader output = new BufferedReader(new InputStreamReader(process.getInputStream()));
+        String result = output.readLine();
+        return result.substring(1, result.length() - 1);
     }
 
     public User getUser(String username){

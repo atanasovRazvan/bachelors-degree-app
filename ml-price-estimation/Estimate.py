@@ -1,4 +1,11 @@
+import csv
 import sys
+import os
+import importlib
+from copy import deepcopy
+
+os.chdir("C:/Users/Razvan/Desktop/LICENTA/Lucrarea de Licenta/ml-price-estimation")
+importlib.reload(sys)
 
 from Neuron import Neuron, evaluatingMLP
 from dataNormalisation import denormalisation
@@ -6,7 +13,7 @@ from reader import readNeighbourhoods
 
 
 def readNetwork():
-    networkFile = open('network.txt', 'r')
+    networkFile = open('./network.txt', 'r')
     mean = networkFile.readline()[:-1]
     mean = [float(x) for x in mean.strip('][').split(', ')]
     stdDev = networkFile.readline()[:-1]
@@ -31,9 +38,25 @@ def readNetwork():
 
 mean, stdDev, network = readNetwork()
 input = sys.argv[1:]
+neighbourhood = deepcopy(input[0])
 input[0] = readNeighbourhoods()[input[0]]
 input[1:] = [float(x) for x in input[1:]]
 
 output = evaluatingMLP(network, [input])
 output = denormalisation(output, mean, stdDev)
+initialPrice = input[-1]
+outputValue = int(output[0])
+if initialPrice < outputValue + 0.1 * outputValue and initialPrice > outputValue - 0.1 * outputValue:
+    newData = []
+    newRow = [neighbourhood] + [str(input[1])] + [str(input[2])] + [str(input[3])]
+    file = open('data/apartments.csv')
+    csv_reader = csv.reader(file)
+    next(csv_reader)
+    for row in csv_reader:
+        newData.append(row)
+    newData.append(newRow)
+    file.close()
+    file = open('data/apartments.csv', 'w')
+    writer = csv.writer(file)
+    writer.writerows(newData)
 print(output)

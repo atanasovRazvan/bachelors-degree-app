@@ -1,24 +1,17 @@
-package service;
+package controller;
 
 import model.*;
-import org.hibernate.jpa.HibernatePersistenceProvider;
 import org.springframework.web.bind.annotation.*;
-import repository.ApartmentRepository;
-import repository.ImageRepository;
-import repository.RepositoryInterface;
-import repository.UserRepository;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import service.Service;
 
-import javax.xml.soap.Detail;
-import java.util.ArrayList;
+import java.io.IOException;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicReference;
-import java.util.stream.Collectors;
 
-@CrossOrigin
 @RestController
+@CrossOrigin(origins = "*")
 @RequestMapping("/api")
 public class RESTController {
 
@@ -102,7 +95,20 @@ public class RESTController {
         else {
             savedApartment = service.createApartment(apartment);
         }
+
         if(savedApartment != null){
+            try {
+                savedApartment.setEstimatedPrice(service.evaluateApartment(
+                        savedApartment.getNeighbourhood(),
+                        savedApartment.getSquareMeters(),
+                        savedApartment.getNoRooms(),
+                        savedApartment.getPrice()
+                        ));
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } catch (IOException exception) {
+                exception.printStackTrace();
+            }
             return new ResponseEntity<>(savedApartment, HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
