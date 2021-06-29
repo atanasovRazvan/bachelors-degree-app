@@ -1,7 +1,5 @@
 // TODOS
 	// MyListings
-
-	-	create, update, delete apartment (CONNECT TO API)
 	-	add "You sure?" modal on deletion
 
 // FIXES

@@ -87,31 +87,31 @@ public class RESTController {
     }
 
     @PostMapping("/apartment")
-    public ResponseEntity<Apartment> updateApartment(@RequestBody Apartment apartment){
+    public ResponseEntity<Apartment> updateApartment(@RequestBody DetailedApartment apartment){
         Apartment savedApartment;
-        if(service.apartmentExists(apartment.getId())){
-            savedApartment = service.updateApartment(apartment);
-        }
-        else {
-            savedApartment = service.createApartment(apartment);
-        }
 
-        if(savedApartment != null){
-            try {
-                savedApartment.setEstimatedPrice(service.evaluateApartment(
-                        savedApartment.getNeighbourhood(),
-                        savedApartment.getSquareMeters(),
-                        savedApartment.getNoRooms(),
-                        savedApartment.getPrice()
-                        ));
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            } catch (IOException exception) {
-                exception.printStackTrace();
+        try {
+            String estimatedPrice = service.evaluateApartment(
+                    apartment.getNeighbourhood(),
+                    apartment.getSquareMeters(),
+                    apartment.getNoRooms(),
+                    apartment.getPrice()
+            );
+            apartment.setEstimatedPrice(estimatedPrice);
+            if (service.apartmentExists(apartment.getId())) {
+                savedApartment = service.updateApartment(apartment);
+            } else {
+                savedApartment = service.createApartment(apartment);
             }
-            return new ResponseEntity<>(savedApartment, HttpStatus.OK);
+
+            if (savedApartment != null) {
+                return new ResponseEntity<>(savedApartment, HttpStatus.OK);
+            }
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        catch(Exception e) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
     }
 
     @DeleteMapping("/apartment/{id}")

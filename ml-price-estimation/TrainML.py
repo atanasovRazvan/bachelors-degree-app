@@ -2,7 +2,7 @@ import sys
 import os
 import importlib
 
-os.chdir("C:/Users/Razvan/Desktop/LICENTA/Lucrarea de Licenta/ml-price-estimation")
+os.chdir("C:/Users/Razvan/Desktop/LICENTA/App/ml-price-estimation")
 importlib.reload(sys)
 
 from Neuron import *
@@ -16,7 +16,7 @@ inputs = []
 for el in input:
     oneInput = [neighbourhoods[el[0]]]
     for x in el[1:]:
-        oneInput.append(int(x))
+        oneInput.append(float(x))
     inputs.append(oneInput)
 
 split = int(len(inputs) / 10)
@@ -44,4 +44,10 @@ for layer in network:
 networkFile.close()
 
 output = evaluatingMLP(network, testData)
-print("Training DONE!")
+actualPrices = denormalisation([x[-1] for x in testData], mean, stdDev)
+output = denormalisation(output, mean, stdDev)
+error = 0
+for index in range(len(output)):
+    error = error + min(output[index], actualPrices[index]) / max(output[index], actualPrices[index])
+accuracy = error / len(output) * 100
+print("Accuracy: %.2f" % accuracy + '%')

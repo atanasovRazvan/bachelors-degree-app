@@ -27,6 +27,8 @@ public class DetailedApartment {
     private String phoneNumber;
     private String avatarSrc;
 
+    public DetailedApartment(){}
+
     public DetailedApartment(Apartment apartment, User user, List<Image> imageSources) {
         this.id = apartment.getId();
         this.squareMeters = apartment.getSquareMeters();

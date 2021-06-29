@@ -4,7 +4,7 @@ import os
 import importlib
 from copy import deepcopy
 
-os.chdir("C:/Users/Razvan/Desktop/LICENTA/Lucrarea de Licenta/ml-price-estimation")
+os.chdir("C:/Users/Razvan/Desktop/LICENTA/App/ml-price-estimation")
 importlib.reload(sys)
 
 from Neuron import Neuron, evaluatingMLP

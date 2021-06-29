@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="49d43ecc-1d9c-4d9d-82cd-51122a707864" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AppServer/.gradle/6.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../AppServer/.gradle/6.1/executionHistory/executionHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AppServer/.gradle/6.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../AppServer/.gradle/6.1/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AppServer/.gradle/6.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../AppServer/.gradle/6.1/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AppServer/.gradle/6.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../AppServer/.gradle/6.1/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AppServer/.gradle/6.1/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../AppServer/.gradle/6.1/javaCompile/classAnalysis.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AppServer/.gradle/6.1/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../AppServer/.gradle/6.1/javaCompile/javaCompile.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AppServer/.gradle/6.1/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../AppServer/.gradle/6.1/javaCompile/taskHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AppServer/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../AppServer/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AppServer/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../AppServer/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AppServer/.gradle/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../AppServer/.gradle/checksums/checksums.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AppServer/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../AppServer/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AppServer/.idea/sonarlint/issuestore/1/0/1095feb193a87cb278327de9a3fda662370be32e" beforeDir="false" afterPath="$PROJECT_DIR$/../AppServer/.idea/sonarlint/issuestore/1/0/1095feb193a87cb278327de9a3fda662370be32e" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AppServer/.idea/sonarlint/issuestore/4/b/4b83462ff1263edd4036153022d19a48cf2bdf47" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AppServer/.idea/sonarlint/issuestore/a/1/a18b321ba47de0eda6b7271284b6cbc43fc1f8dd" beforeDir="false" afterPath="$PROJECT_DIR$/../AppServer/.idea/sonarlint/issuestore/a/1/a18b321ba47de0eda6b7271284b6cbc43fc1f8dd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AppServer/.idea/sonarlint/issuestore/c/4/c4600a57cc2a2bfb3baf7d1bb1582a59de939c54" beforeDir="false" afterPath="$PROJECT_DIR$/../AppServer/.idea/sonarlint/issuestore/c/4/c4600a57cc2a2bfb3baf7d1bb1582a59de939c54" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AppServer/.idea/sonarlint/issuestore/c/8/c89769fe181d330c440b8bb964f3bd35c8fc8e4e" beforeDir="false" afterPath="$PROJECT_DIR$/../AppServer/.idea/sonarlint/issuestore/c/8/c89769fe181d330c440b8bb964f3bd35c8fc8e4e" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AppServer/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/../AppServer/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AppServer/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../AppServer/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AppServer/build/classes/java/main/model/UserPublicInfo.class" beforeDir="false" afterPath="$PROJECT_DIR$/../AppServer/build/classes/java/main/model/UserPublicInfo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AppServer/build/classes/java/main/service/Service.class" beforeDir="false" afterPath="$PROJECT_DIR$/../AppServer/build/classes/java/main/service/Service.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AppServer/build/classes/java/main/service/StartServer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AppServer/build/resources/main/hibernateConfig/hibernate.hbn" beforeDir="false" afterPath="$PROJECT_DIR$/../AppServer/build/resources/main/hibernateConfig/hibernate.hbn" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AppServer/database/Database.db" beforeDir="false" afterPath="$PROJECT_DIR$/../AppServer/database/Database.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ml-price-estimation/TrainML.py" beforeDir="false" afterPath="$PROJECT_DIR$/../ml-price-estimation/TrainML.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ml-price-estimation/data/apartments.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../ml-price-estimation/data/apartments.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ml-price-estimation/data/neighbourhoods.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../ml-price-estimation/data/neighbourhoods.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ml-price-estimation/dist/Estimate.exe" beforeDir="false" afterPath="$PROJECT_DIR$/../ml-price-estimation/dist/Estimate.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ml-price-estimation/dist/TrainML.exe" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ml-price-estimation/network.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../ml-price-estimation/network.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ml-price-estimation/reader.py" beforeDir="false" afterPath="$PROJECT_DIR$/../ml-price-estimation/reader.py" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectId" id="1ucr0dmmXAm10Mjq5JWg5COntNy" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/imobiliare" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="49d43ecc-1d9c-4d9d-82cd-51122a707864" name="Default Changelist" comment="" />
+      <created>1624975497651</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1624975497651</updated>
+      <workItem from="1624975499062" duration="15000" />
+    </task>
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="549" y="172" key="FileChooserDialogImpl" timestamp="1624975512042">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="549" y="172" key="FileChooserDialogImpl/0.0.1536.834@0.0.1536.834" timestamp="1624975512042" />
+  </component>
+</project>

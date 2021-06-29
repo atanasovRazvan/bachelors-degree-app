@@ -1,11 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="668f5df3-9f18-436e-bdbf-02eba022d78f" name="Default Changelist" comment="" />
+    <list default="true" id="668f5df3-9f18-436e-bdbf-02eba022d78f" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AppServer/.gradle/6.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/AppServer/.gradle/6.1/executionHistory/executionHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AppServer/.gradle/6.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/AppServer/.gradle/6.1/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AppServer/.gradle/6.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/AppServer/.gradle/6.1/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AppServer/.gradle/6.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/AppServer/.gradle/6.1/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AppServer/.gradle/6.1/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/AppServer/.gradle/6.1/javaCompile/classAnalysis.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AppServer/.gradle/6.1/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/AppServer/.gradle/6.1/javaCompile/javaCompile.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AppServer/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/AppServer/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AppServer/.idea/sonarlint/issuestore/1/0/1095feb193a87cb278327de9a3fda662370be32e" beforeDir="false" afterPath="$PROJECT_DIR$/AppServer/.idea/sonarlint/issuestore/1/0/1095feb193a87cb278327de9a3fda662370be32e" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AppServer/.idea/sonarlint/issuestore/a/1/a18b321ba47de0eda6b7271284b6cbc43fc1f8dd" beforeDir="false" afterPath="$PROJECT_DIR$/AppServer/.idea/sonarlint/issuestore/a/1/a18b321ba47de0eda6b7271284b6cbc43fc1f8dd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AppServer/.idea/sonarlint/issuestore/c/4/c4600a57cc2a2bfb3baf7d1bb1582a59de939c54" beforeDir="false" afterPath="$PROJECT_DIR$/AppServer/.idea/sonarlint/issuestore/c/4/c4600a57cc2a2bfb3baf7d1bb1582a59de939c54" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AppServer/.idea/sonarlint/issuestore/c/8/c89769fe181d330c440b8bb964f3bd35c8fc8e4e" beforeDir="false" afterPath="$PROJECT_DIR$/AppServer/.idea/sonarlint/issuestore/c/8/c89769fe181d330c440b8bb964f3bd35c8fc8e4e" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AppServer/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/AppServer/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AppServer/build/classes/java/main/model/UserPublicInfo.class" beforeDir="false" afterPath="$PROJECT_DIR$/AppServer/build/classes/java/main/model/UserPublicInfo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AppServer/build/classes/java/main/service/Service.class" beforeDir="false" afterPath="$PROJECT_DIR$/AppServer/build/classes/java/main/service/Service.class" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1rIovoOEiuDU9vOZa4e2S4KauPo" />
   <component name="ProjectViewState">
@@ -17,6 +36,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="668f5df3-9f18-436e-bdbf-02eba022d78f" name="Default Changelist" comment="" />
@@ -25,7 +45,12 @@
       <option name="presentableId" value="Default" />
       <updated>1618673198398</updated>
       <workItem from="1618673199859" duration="6000" />
+      <workItem from="1622145215070" duration="1137000" />
+      <workItem from="1622830656103" duration="26000" />
     </task>
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
 </project>

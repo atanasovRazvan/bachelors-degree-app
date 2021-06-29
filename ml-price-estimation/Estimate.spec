@@ -5,7 +5,7 @@ block_cipher = None
 
 
 a = Analysis(['Estimate.py'],
-             pathex=['C:\\Users\\Razvan\\Desktop\\LICENTA\\Lucrarea de Licenta\\ml-price-estimation'],
+             pathex=['C:\\Users\\Razvan\\Desktop\\LICENTA\\App\\ml-price-estimation'],
              binaries=[],
              datas=[],
              hiddenimports=[],

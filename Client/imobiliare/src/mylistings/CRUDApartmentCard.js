@@ -108,6 +108,7 @@ const CRUDApartmentCard = ({ apartment }) => {
   };
 
   const updateApartment = () => {
+    console.log(apartmentInfo);
     axios.post(`${serverUrl}/apartment`, apartmentInfo, config)
       .then(() => {
         console.log('Updated successfully');

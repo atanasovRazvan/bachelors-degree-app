@@ -20,7 +20,7 @@ public class Service {
 
     class TrainML extends TimerTask {
         public void run() {
-            String pathToTrain = "C:\\Users\\Razvan\\Desktop\\LICENTA\\Lucrarea de Licenta\\ml-price-estimation\\dist\\TrainML.exe";
+            String pathToTrain = "C:\\Users\\Razvan\\Desktop\\LICENTA\\App\\ml-price-estimation\\dist\\TrainML.exe";
             try {
                 Process process = Runtime.getRuntime().exec(pathToTrain);
                 process.waitFor();
@@ -55,7 +55,7 @@ public class Service {
     }
 
     public String evaluateApartment(String neighbourhood, String squareMeters, String noRooms, String price) throws InterruptedException, IOException {
-        String pathToEvaluation = "C:\\Users\\Razvan\\Desktop\\LICENTA\\Lucrarea de Licenta\\ml-price-estimation\\dist\\Estimate.exe";
+        String pathToEvaluation = "C:\\Users\\Razvan\\Desktop\\LICENTA\\App\\ml-price-estimation\\dist\\Estimate.exe";
         Process process = Runtime.getRuntime().exec(
                 pathToEvaluation + " " +
                         neighbourhood + " " +
@@ -196,13 +196,63 @@ public class Service {
         return this.apartmentRepository.findOne(apartmentId) != null;
     }
 
-    public Apartment createApartment(Apartment apartment){
-        apartment.setId(UUID.randomUUID().toString());
-        return this.apartmentRepository.add(apartment);
+    public Apartment createApartment(DetailedApartment apartment){
+        long unixTime = System.currentTimeMillis() / 1000L;
+        Apartment basicApartment = new Apartment.Builder()
+                .withCity(apartment.getCity())
+                .withCreatedAt(String.valueOf(unixTime))
+                .withDescription(apartment.getDescription())
+                .withEstimatedPrice(apartment.getEstimatedPrice())
+                .withFloor(apartment.getFloor())
+                .withNeighbourhood(apartment.getNeighbourhood())
+                .withNoRooms(apartment.getNoRooms())
+                .withNumber(apartment.getNumber())
+                .withOwnerUsername(apartment.getOwnerUsername())
+                .withPrice(apartment.getPrice())
+                .withSquareMeters(apartment.getSquareMeters())
+                .withStreet(apartment.getStreet())
+                .withTitle(apartment.getTitle())
+                .build();
+        apartment.getImageSources().forEach(image -> {
+            image.setApartmentId(basicApartment.getId());
+            this.imageRepository.add(image);
+            if(image.getIsDisplay().equals(Boolean.TRUE))
+                basicApartment.setDisplayImage(image.getSource());
+        });
+
+        return this.apartmentRepository.add(basicApartment);
     }
 
-    public Apartment updateApartment(Apartment apartment){
-        return this.apartmentRepository.update(apartment);
+    public Apartment updateApartment(DetailedApartment apartment){
+        Apartment basicApartment = new Apartment.Builder()
+                .withCity(apartment.getCity())
+                .withCreatedAt(apartment.getCreatedAt())
+                .withDescription(apartment.getDescription())
+                .withEstimatedPrice(apartment.getEstimatedPrice())
+                .withFloor(apartment.getFloor())
+                .withNeighbourhood(apartment.getNeighbourhood())
+                .withNoRooms(apartment.getNoRooms())
+                .withNumber(apartment.getNumber())
+                .withOwnerUsername(apartment.getOwnerUsername())
+                .withPrice(apartment.getPrice())
+                .withSquareMeters(apartment.getSquareMeters())
+                .withStreet(apartment.getStreet())
+                .withTitle(apartment.getTitle())
+                .build();
+        basicApartment.setId(apartment.getId());
+
+        apartment.getImageSources().forEach(image -> {
+            try{
+                this.imageRepository.add(image);
+            }
+            catch (Exception e){
+                this.imageRepository.update(image);
+            }
+            if(image.getIsDisplay().equals(Boolean.TRUE))
+                basicApartment.setDisplayImage(image.getSource());
+        });
+
+        return this.apartmentRepository.update(basicApartment);
     }
 
 }

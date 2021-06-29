@@ -1,9 +1,10 @@
 def readData():
     file = open('data/apartments.csv', 'r')
     data = []
-    line = file.readline()[3:-1]
+    line = file.readline()[0:-1]
     while line:
         data.append(line.split(','))
+        file.readline()
         line = file.readline()[0:-1]
     return data
 
